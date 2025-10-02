@@ -5,6 +5,7 @@ PATH:=$(LOCAL_BIN):$(PATH)
 APP_NAME:="alerton"
 VERSION:="0.0.11"
 ARCH:="amd64"
+GIT_REVISION?=`git rev-parse --short HEAD`
 BUILD_DIR:=$(APP_NAME)_$(VERSION)_$(ARCH)
 
 .PHONY: help
@@ -21,7 +22,7 @@ build: ### build app
 	mkdir -p $(BUILD_DIR)/usr/local/bin
 	mkdir -p $(BUILD_DIR)/etc/alerton
 	mkdir -p $(BUILD_DIR)/lib/systemd/system
-	CGO_ENABLED=0 go build -ldflags "-s -w" -o $(BUILD_DIR)/usr/local/bin/alerton -v ./cmd/app
+	CGO_ENABLED=1 go build -ldflags "-s -w -X main.buildDate=`date -u +%Y.%m.%d_%H:%M:%S` -X main.gitRevision=$(GIT_REVISION) -X main.version=$(VERSION)" -o $(BUILD_DIR)/usr/local/bin/alerton -v ./cmd/app
 	cp -r ./scripts $(BUILD_DIR)/etc/alerton
 	cp ./config/alerton.yml $(BUILD_DIR)/etc/alerton
 	cp ./config/alerton.service $(BUILD_DIR)/lib/systemd/system

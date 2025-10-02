@@ -15,17 +15,32 @@ import (
 )
 
 var (
-	scriptsDir *string
-	configFile *string
+	scriptsDir  *string
+	configFile  *string
+	versionFlag *bool
+	version     = "devel"
+	gitRevision = "devel"
+	buildDate   = "devel"
 )
 
 func init() {
 	scriptsDir = flag.String("scripts_dir", "/etc/alerton/scripts", "Scripts directory")
 	configFile = flag.String("config_file", "/etc/alerton/alerton.yml", "Config filename")
+	versionFlag = flag.Bool("version", false, "Print version")
 }
 
 func main() {
 	flag.Parse()
+
+	if *versionFlag {
+		fmt.Printf(
+			"Name: %s\nVersion: %s\ngitRevision: %s\nbuildDate: %s\n",
+			"AlertON",
+			version,
+			gitRevision,
+			buildDate)
+		os.Exit(0)
+	}
 
 	cfg, err := config.NewConfig(*configFile)
 	if err != nil {
