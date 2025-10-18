@@ -5,7 +5,7 @@ Documentation=https://github.com/telepuz/alerton
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/alerton
+ExecStart=/usr/bin/alerton
 PIDFile=/run/alerton/alerton.pid
 TimeoutStopSec=0
 Restart=always
