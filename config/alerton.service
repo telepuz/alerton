@@ -1,6 +1,7 @@
 [Unit]
 Description=A simple alerting daemon
-After=network.target
+After=network-online.target
+Wants=network-online.target
 Documentation=https://github.com/telepuz/alerton
 
 [Service]
@@ -9,6 +10,7 @@ ExecStart=/usr/bin/alerton
 PIDFile=/run/alerton/alerton.pid
 TimeoutStopSec=0
 Restart=always
+RestartSec=10
 RuntimeDirectory=alerton
 RuntimeDirectoryMode=2755
 UMask=007
