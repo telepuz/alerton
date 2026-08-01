@@ -6,3 +6,4 @@ Maintainer: Alex Belov <t7k312@gmail.com>
 Description: A simple alerting daemon
 Section: unknown
 Priority: optional
+Depends: jq, lm-sensors, iputils-ping

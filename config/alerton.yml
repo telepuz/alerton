@@ -37,3 +37,5 @@ alerts:
   command: osOOMKilledProcesses.sh
 - name: Check new logins
   command: osNewLogins.sh
+- name: Check host temperature
+  command: osHostTemperature.sh

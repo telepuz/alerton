@@ -3,7 +3,7 @@ export
 LOCAL_BIN:=$(CURDIR)/bin
 PATH:=$(LOCAL_BIN):$(PATH)
 APP_NAME:="alerton"
-VERSION:="0.0.14"
+VERSION:="0.0.15"
 ARCH:="amd64"
 GIT_REVISION?=`git rev-parse --short HEAD`
 BUILD_DIR:=$(APP_NAME)_$(VERSION)_$(ARCH)
